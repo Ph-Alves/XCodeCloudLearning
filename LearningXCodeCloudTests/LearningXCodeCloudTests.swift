@@ -9,6 +9,7 @@ import Foundation
 import Testing
 @testable import LearningXCodeCloud
 
+@Suite("Testes da Todo list")
 struct TodoControllerTests {
     @Test func addItem() {
         let controller = TodoController()
@@ -17,13 +18,13 @@ struct TodoControllerTests {
         #expect(controller.items.first?.title == "Comprar pão")
         #expect(controller.items.first?.isDone == false)
     }
-
+    
     @Test func addEmptyTitleIsIgnored() {
         let controller = TodoController()
         controller.add(title: "   ")
         #expect(controller.items.isEmpty)
     }
-
+    
     @Test func toggleItem() {
         let controller = TodoController()
         controller.add(title: "Tarefa")
@@ -33,7 +34,7 @@ struct TodoControllerTests {
         controller.toggle(item: controller.items[0])
         #expect(controller.items[0].isDone == false)
     }
-
+    
     @Test func updateItem() {
         let controller = TodoController()
         controller.add(title: "Antigo")
@@ -41,7 +42,7 @@ struct TodoControllerTests {
         controller.update(item: item, newTitle: "Novo")
         #expect(controller.items[0].title == "Novo")
     }
-
+    
     @Test func updateWithEmptyTitleIsIgnored() {
         let controller = TodoController()
         controller.add(title: "Original")
@@ -49,7 +50,7 @@ struct TodoControllerTests {
         controller.update(item: item, newTitle: "  ")
         #expect(controller.items[0].title == "Original")
     }
-
+    
     @Test func deleteAtIndex() {
         let controller = TodoController()
         controller.add(title: "A")
@@ -59,7 +60,7 @@ struct TodoControllerTests {
         #expect(controller.items.count == 2)
         #expect(controller.items.map(\.title) == ["A", "C"])
     }
-
+    
     @Test func deleteItem() {
         let controller = TodoController()
         controller.add(title: "X")
@@ -69,7 +70,7 @@ struct TodoControllerTests {
         #expect(controller.items.count == 1)
         #expect(controller.items[0].title == "Y")
     }
-
+    
     @Test func todoItemEquality() {
         let id = UUID()
         let a = TodoItem(id: id, title: "Test")
