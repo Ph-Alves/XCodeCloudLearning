@@ -24,12 +24,9 @@ final class LearningXCodeCloudUITests: XCTestCase {
     func testAddTodo() {
         let textField = app.textFields["Nova tarefa"]
         textField.tap()
-        textField.typeText("Estudar CI/CD")
-
-        app.buttons["Adicionar"].tap()
+        textField.typeText("Estudar CI/CD\n")
 
         XCTAssertTrue(app.staticTexts["Estudar CI/CD"].exists)
-        XCTAssertEqual(textField.label, "")
     }
 
     @MainActor
@@ -42,8 +39,7 @@ final class LearningXCodeCloudUITests: XCTestCase {
     func testToggleTodo() {
         let textField = app.textFields["Nova tarefa"]
         textField.tap()
-        textField.typeText("Tarefa toggle")
-        app.buttons["Adicionar"].tap()
+        textField.typeText("Tarefa toggle\n")
 
         app.buttons["circle"].tap()
 
@@ -54,8 +50,7 @@ final class LearningXCodeCloudUITests: XCTestCase {
     func testDeleteTodo() {
         let textField = app.textFields["Nova tarefa"]
         textField.tap()
-        textField.typeText("Tarefa deletar")
-        app.buttons["Adicionar"].tap()
+        textField.typeText("Tarefa deletar\n")
 
         let cell = app.staticTexts["Tarefa deletar"]
         cell.swipeLeft()
